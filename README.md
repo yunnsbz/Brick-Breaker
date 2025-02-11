@@ -2,7 +2,7 @@
 
 This is a **Brick Breaker** clone built in **C++**, following the *Planet Chili Beginner C++* tutorial series.
 
-I forked this repository not only to replicate the base implementation but also to introduce **new features** that enhance the gameplay experience, including:
+I clone this repository not only to replicate the base implementation but also to introduce **new features** that enhance the gameplay experience, including:
 
 -  **Score System** – Keep track of your progress and challenge yourself!
 -  **Restart Option** – Quickly reset the game and try again without restarting the application.
