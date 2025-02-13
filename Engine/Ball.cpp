@@ -17,16 +17,47 @@ void Ball::Update(float deltaTime)
 	Pos += Vel * deltaTime;
 }
 
+Rectf Ball::GetRect() const
+{
+	return Rectf::CenterRectf(Pos, Radius, Radius);
+}
+
 bool Ball::DoWallCollision(const Rectf& wall)
 {
+	bool collided = false;
 
-	return false;
+	Rectf rect = GetRect();
+
+	if (wall.Left > rect.Left) {
+		Pos.x += wall.Left - rect.Left;
+		BounceX();
+		collided = true;
+	}
+	if (wall.Right < rect.Right) {
+		Pos.x -= rect.Right - wall.Right;
+		BounceX();
+		collided = true;
+	}
+	if (wall.Top > rect.Top) {
+		Pos.y += wall.Top - rect.Top;
+		BounceY();
+		collided = true;
+	}
+	if (wall.Bottom < rect.Bottom) {
+		Pos.y -= rect.Bottom - wall.Bottom;
+		BounceY();
+		collided = true;
+	}
+
+	return collided;
 }
 
 void Ball::BounceX()
 {
+	Vel.x = -Vel.x;
 }
 
 void Ball::BounceY()
 {
+	Vel.y = -Vel.y;
 }

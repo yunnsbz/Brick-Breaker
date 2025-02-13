@@ -9,6 +9,7 @@ public:
 	void Draw(Graphics& gfx) const;
 	void Update(float deltaTime);
 
+	Rectf GetRect() const;
 	bool DoWallCollision(const Rectf& wall);
 	void BounceX();
 	void BounceY();

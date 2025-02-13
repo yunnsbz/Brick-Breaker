@@ -49,6 +49,7 @@ private:
 
 	FrameTimer ft;
 	Ball Ball;
+	Rectf Walls;
 	//Brick Brick;
 
 

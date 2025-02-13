@@ -7,7 +7,7 @@ public:
 	Rectf(float right, float left, float top, float bottom);
 	Rectf(Vec2 topLeft, Vec2 bottomRight);
 	Rectf(Vec2 topLeft, float width, float height);
-	Rectf CenterRectf(Vec2 CenterPos, float halfWidth, float halfHeight);
+	static Rectf CenterRectf(Vec2 CenterPos, float halfWidth, float halfHeight);
 
 	bool IsOverlappingWith(const Rectf& rect) const;
 
