@@ -26,7 +26,8 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	Ball(Vec2(100.0f, 100.0f), Vec2(280.0f, 270.0f)),
-	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight ))
+	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight)),
+	BallSound(L"Sounds\\arkpad.wav")
 {
 }
 
@@ -44,7 +45,10 @@ void Game::UpdateModel()
 	
 
 	Ball.Update(dt);
-	Ball.DoWallCollision(Walls);
+	if (Ball.DoWallCollision(Walls))
+	{
+		BallSound.Play();
+	}
 }
 
 void Game::ComposeFrame()
