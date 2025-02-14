@@ -6,9 +6,9 @@ class Rectf {
 public:
 	Rectf() = default;
 	Rectf(float right, float left, float top, float bottom);
-	Rectf(Vec2 topLeft, Vec2 bottomRight);
-	Rectf(Vec2 topLeft, float width, float height);
-	static Rectf CenterRectf(Vec2 CenterPos, float halfWidth, float halfHeight);
+	Rectf(const Vec2& topLeft, const Vec2& bottomRight);
+	Rectf(const Vec2& topLeft, float width, float height);
+	static Rectf CenterRectf(const Vec2& CenterPos, float halfWidth, float halfHeight);
 
 	bool IsOverlappingWith(const Rectf& rect) const;
 

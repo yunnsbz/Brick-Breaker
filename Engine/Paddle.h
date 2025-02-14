@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Vec2.h";
-#include "Colors.h";
-#include "Ball.h";
-#include "Keyboard.h";
-#include "Graphics.h";
+#include "Vec2.h"
+#include "Colors.h"
+#include "Ball.h"
+#include "Keyboard.h"
+#include "Graphics.h"
 
 class Paddle {
 
@@ -18,7 +18,7 @@ public:
 
 private:
 	Vec2 Pos;
-	static constexpr float speed = 200.0f;
+	static constexpr float speed = 400.0f;
 	static constexpr float SideWidth = 20.0f;
 	float HalfWidth;
 	float HalfHeight;

@@ -10,29 +10,26 @@ Rectf::Rectf(float right, float left, float top, float bottom)
 
 }
 
-Rectf::Rectf(Vec2 topLeft, Vec2 bottomRight)
+Rectf::Rectf(const Vec2& topLeft, const Vec2& bottomRight)
 	:
-	Rectf(topLeft, bottomRight.x, bottomRight.y)
+	Rectf(topLeft.x, bottomRight.x, topLeft.y, bottomRight.y)
 {
 }
 
-Rectf::Rectf(Vec2 topLeft, float width, float height)
+Rectf::Rectf(const Vec2& topLeft, float width, float height)
 	:
-	Rectf(width, topLeft.x, topLeft.y, height)
+	Rectf(topLeft, topLeft + Vec2(width, height))
 {
 }
 
-Rectf Rectf::CenterRectf(Vec2 CenterPos, float halfWidth, float halfHeight)
+Rectf Rectf::CenterRectf(const Vec2& center, float halfWidth, float halfHeight)
 {
-	return Rectf(CenterPos.x + halfWidth, CenterPos.x - halfWidth, CenterPos.y - halfHeight, CenterPos.y + halfHeight);
+	const Vec2 half(halfWidth, halfHeight);
+	return Rectf(center - half, center + half);
 }
 
 bool Rectf::IsOverlappingWith(const Rectf& other) const
 {
-	if (Right > other.Left && Left < other.Right &&
-		Bottom > other.Top && Top < other.Bottom)
-	{
-		return true;
-	}
-	return false;
+	return Right < other.Left && Left > other.Right &&
+		Bottom > other.Top && Top < other.Bottom;
 }

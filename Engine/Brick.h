@@ -12,7 +12,7 @@ public:
 	bool DoBallCollision(Ball& ball);
 	void Draw(Graphics& gfx) const;
 
-public:
+private:
 	Color color;
 	Rectf rect;
 	bool IsDestroyed = false;

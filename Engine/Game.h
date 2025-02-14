@@ -19,7 +19,6 @@
  *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
  ******************************************************************************************/
 #pragma once
-
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
@@ -56,7 +55,11 @@ private:
 	Sound BallSound;
 	Sound BrickSound;
 
-	Brick Brick;
+	static constexpr int BrickCountX = 10;
+	static constexpr int BrickCountY = 4;
+	static constexpr int TotalBrickCount = BrickCountX * BrickCountY;
+
+	Brick Bricks[TotalBrickCount];
 
 	Paddle Paddle;
 

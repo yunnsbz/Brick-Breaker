@@ -33,12 +33,12 @@ bool Ball::DoWallCollision(const Rectf& wall)
 
 	Rectf rect = GetRect();
 
-	if (wall.Left > rect.Left) {
+	if (wall.Left < rect.Left) {
 		Pos.x += wall.Left - rect.Left;
 		BounceX();
 		collided = true;
 	}
-	if (wall.Right < rect.Right) {
+	if (wall.Right > rect.Right) {
 		Pos.x -= rect.Right - wall.Right;
 		BounceX();
 		collided = true;
