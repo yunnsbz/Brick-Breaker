@@ -38,9 +38,12 @@ void Paddle::Update(const Keyboard& kbd, float deltaTime)
 	}
 }
 
-void Paddle::Draw(Graphics& gfx) const
+void Paddle::Draw(Graphics& gfx)
 {
+	gfx.DrawRect(GetRect(), SideColor);
+	HalfWidth -= SideWidth;
 	gfx.DrawRect(GetRect(), InnerColor);
+	HalfWidth += SideWidth;
 }
 
 Rectf Paddle::GetRect() const

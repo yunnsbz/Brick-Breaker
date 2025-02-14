@@ -30,7 +30,7 @@ Game::Game(MainWindow& wnd)
 	BallSound(L"Sounds\\arkpad.wav"),
 	BrickSound(L"Sounds\\arkbrick.wav"),
 	Brick(Rectf(Vec2(300,400),Vec2(550,440)),Color(120,200,200)),
-	Paddle(Vec2(120,500),100,10)
+	Paddle(Vec2(320,500),100,10)
 {
 }
 

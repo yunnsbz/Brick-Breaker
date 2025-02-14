@@ -13,12 +13,13 @@ public:
 	bool DoBallCollision(Ball& ball) const;
 	void DoWallCollision(const Rectf& wall);
 	void Update(const Keyboard& kbd,float deltaTime);
-	void Draw(Graphics& gfx) const;
+	void Draw(Graphics& gfx);
 	Rectf GetRect() const;
 
 private:
 	Vec2 Pos;
 	static constexpr float speed = 200.0f;
+	static constexpr float SideWidth = 20.0f;
 	float HalfWidth;
 	float HalfHeight;
 	Color SideColor = Colors::Red;
