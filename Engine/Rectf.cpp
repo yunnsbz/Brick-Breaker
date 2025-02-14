@@ -29,8 +29,10 @@ Rectf Rectf::CenterRectf(Vec2 CenterPos, float halfWidth, float halfHeight)
 
 bool Rectf::IsOverlappingWith(const Rectf& other) const
 {
-	if (Top < other.Bottom && Left < other.Right &&
-		other.Left < Right && Bottom > other.Top)
+	if (Right > other.Left && Left < other.Right &&
+		Bottom > other.Top && Top < other.Bottom)
+	{
 		return true;
-	else return false;
+	}
+	return false;
 }

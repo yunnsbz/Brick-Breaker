@@ -27,6 +27,7 @@
 #include "Brick.h"
 #include "FrameTimer.h"
 #include "Sound.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -56,6 +57,8 @@ private:
 	Sound BrickSound;
 
 	Brick Brick;
+
+	Paddle Paddle;
 
 
 };

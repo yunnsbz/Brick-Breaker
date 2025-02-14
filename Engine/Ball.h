@@ -10,6 +10,7 @@ public:
 	void Update(float deltaTime);
 
 	Rectf GetRect() const;
+	Vec2 GetVel() const;
 	bool DoWallCollision(const Rectf& wall);
 	void BounceX();
 	void BounceY();

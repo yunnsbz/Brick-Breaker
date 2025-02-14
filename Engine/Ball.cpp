@@ -22,6 +22,11 @@ Rectf Ball::GetRect() const
 	return Rectf::CenterRectf(Pos, Radius, Radius);
 }
 
+Vec2 Ball::GetVel() const
+{
+	return Vel;
+}
+
 bool Ball::DoWallCollision(const Rectf& wall)
 {
 	bool collided = false;
