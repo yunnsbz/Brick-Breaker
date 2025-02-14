@@ -53,7 +53,9 @@ private:
 	Rectf Walls;
 
 	Sound BallSound;
-	//Brick Brick;
+	Sound BrickSound;
+
+	Brick Brick;
 
 
 };
