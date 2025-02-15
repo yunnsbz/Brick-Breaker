@@ -3,7 +3,6 @@
 #include "Rectf.h"
 #include "Graphics.h"
 #include "Ball.h"
-#include <cmath>
 
 class Brick {
 public:
@@ -14,7 +13,6 @@ public:
 	void ExecuteBallCollision(Ball& ball);
 	void Draw(Graphics& gfx) const;
 	Vec2 GetCenter() const;
-	Rectf GetRect() const;
 
 private:
 	Color color;

@@ -16,11 +16,7 @@ void Brick::ExecuteBallCollision(Ball& ball)
 {
 	// get ball position to check if it is colliding with bottom-top or left-right
 	Vec2 ballPos = ball.GetPos();
-	if (std::signbit(GetCenter().x) == std::signbit(ball.GetVel().x))
-	{
-		ball.BounceY();
-	}	
-	else if (ballPos.x >= rect.Left && ballPos.x <= rect.Right) {
+	if (ballPos.x >= rect.Left && ballPos.x <= rect.Right) {
 		ball.BounceY();
 	}
 	else {
@@ -38,9 +34,4 @@ void Brick::Draw(Graphics& gfx) const
 Vec2 Brick::GetCenter() const
 {
 	return rect.GetCenter();
-}
-
-Rectf Brick::GetRect() const
-{
-	return rect;
 }
