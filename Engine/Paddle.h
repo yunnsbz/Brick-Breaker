@@ -18,7 +18,7 @@ public:
 
 private:
 	Vec2 Pos;
-	static constexpr float speed = 400.0f;
+	static constexpr float speed = 500.0f;
 	static constexpr float SideWidth = 20.0f;
 	float HalfWidth;
 	float HalfHeight;

@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	Ball(Vec2(200.0f, 300.0f), Vec2(280.0f, 270.0f)),
+	Ball(Vec2(200.0f, 300.0f), Vec2(180.0f, -140.0f)),
 	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight)),
 	BallSound(L"Sounds\\arkpad.wav"),
 	BrickSound(L"Sounds\\arkbrick.wav"),
@@ -63,7 +63,6 @@ void Game::UpdateModel()
 
 	Paddle.Update(wnd.kbd, dt);
 	Paddle.DoWallCollision(Walls);
-
 	Ball.Update(dt);
 
 	bool collisionHapened = false;
@@ -71,18 +70,22 @@ void Game::UpdateModel()
 	int curColIndex;
 
 	for (int i = 0; i < TotalBrickCount; i++) {
-		if(Bricks[i].CheckBallCollision(Ball)) {
-			const Vec2 ballPos = Ball.GetPos();
-			const Vec2 brickCenter = Bricks[i].GetCenter();
-			const Vec2 diff = ballPos - brickCenter;
-			const float diffLen = diff.GetLength();
-			if (!collisionHapened) {
-				collisionHapened = true;
-				curColDist = diffLen;
-				curColIndex = i;
+		if(Bricks[i].CheckBallCollision(Ball)) 
+		{
+			const float NewColDist = (Ball.GetPos() - Bricks[i].GetCenter()).GetLengthSq();
+
+			if (collisionHapened) 
+			{
+				if (NewColDist < curColDist) 
+				{
+					curColDist = NewColDist;
+					curColIndex = i;
+				}
 			}
-			else if (diffLen < curColDist) {
-				curColDist = diffLen;
+			else  
+			{
+				collisionHapened = true;
+				curColDist = NewColDist;
 				curColIndex = i;
 			}
 		}
