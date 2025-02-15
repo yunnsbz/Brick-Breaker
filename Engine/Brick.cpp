@@ -22,5 +22,5 @@ bool Brick::DoBallCollision(Ball& ball)
 void Brick::Draw(Graphics& gfx) const
 {
 	if(!IsDestroyed)
-		gfx.DrawRect(rect, color);
+		gfx.DrawRect(rect.GetExpanded(padding), color);
 }
