@@ -1,9 +1,9 @@
 #include "Rectf.h"
 
-Rectf::Rectf(float right, float left, float top, float bottom)
+Rectf::Rectf(float left, float right, float top, float bottom)
 	:
-	Right(right),
 	Left(left),
+	Right(right),
 	Top(top),
 	Bottom(bottom)
 {
@@ -35,6 +35,6 @@ Rectf Rectf::GetExpanded(float offset) const
 
 bool Rectf::IsOverlappingWith(const Rectf& other) const
 {
-	return Right < other.Left && Left > other.Right &&
+	return Left < other.Right && Right > other.Left &&
 		Bottom > other.Top && Top < other.Bottom;
 }
