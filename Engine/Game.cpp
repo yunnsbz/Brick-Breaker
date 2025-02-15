@@ -66,12 +66,32 @@ void Game::UpdateModel()
 
 	Ball.Update(dt);
 
-	for (Brick& B : Bricks) {
-		if(B.DoBallCollision(Ball)) {
-			BrickSound.Play();
-			break;
+	bool collisionHapened = false;
+	float curColDist;
+	int curColIndex;
+
+	for (int i = 0; i < TotalBrickCount; i++) {
+		if(Bricks[i].CheckBallCollision(Ball)) {
+			const Vec2 ballPos = Ball.GetPos();
+			const Vec2 brickCenter = Bricks[i].GetCenter();
+			const Vec2 diff = ballPos - brickCenter;
+			const float diffLen = diff.GetLength();
+			if (!collisionHapened) {
+				collisionHapened = true;
+				curColDist = diffLen;
+				curColIndex = i;
+			}
+			else if (diffLen < curColDist) {
+				curColDist = diffLen;
+				curColIndex = i;
+			}
 		}
 	}
+	if (collisionHapened) {
+		Bricks[curColIndex].ExecuteBallCollision(Ball);
+		BrickSound.Play();
+	}
+
 
 	if (Paddle.DoBallCollision(Ball)) 
 	{

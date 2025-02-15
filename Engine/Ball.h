@@ -14,8 +14,8 @@ public:
 	bool DoWallCollision(const Rectf& wall);
 	void BounceX();
 	void BounceY();
-
-public:
+	Vec2 GetPos() const;
+private:
 	static constexpr float Radius = 7.0f;
 	Vec2 Pos;
 	Vec2 Vel;

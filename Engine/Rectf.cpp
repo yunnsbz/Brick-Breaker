@@ -33,6 +33,11 @@ Rectf Rectf::GetExpanded(float offset) const
 	return Rectf(Left - offset, Right + offset, Top - offset, Bottom + offset);
 }
 
+Vec2 Rectf::GetCenter() const
+{
+	return Vec2((Right + Left) / 2, (Bottom + Top) / 2);
+}
+
 bool Rectf::IsOverlappingWith(const Rectf& other) const
 {
 	return Left < other.Right && Right > other.Left &&

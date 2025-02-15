@@ -7,20 +7,31 @@ Brick::Brick(const Rectf& rect, const Color& c) :
 
 }
 
-bool Brick::DoBallCollision(Ball& ball)
+bool Brick::CheckBallCollision(const Ball& ball) const
 {
-	if (!IsDestroyed && rect.IsOverlappingWith(ball.GetRect())) {
+	return !IsDestroyed && rect.IsOverlappingWith(ball.GetRect());
+}
+
+void Brick::ExecuteBallCollision(Ball& ball)
+{
+	// get ball position to check if it is colliding with bottom-top or left-right
+	Vec2 ballPos = ball.GetPos();
+	if (ballPos.x >= rect.Left && ballPos.x <= rect.Right) {
 		ball.BounceY();
-		IsDestroyed = true;
-		return true;
 	}
 	else {
-		return false;
+		ball.BounceX();
 	}
+	IsDestroyed = true;
 }
 
 void Brick::Draw(Graphics& gfx) const
 {
 	if(!IsDestroyed)
 		gfx.DrawRect(rect.GetExpanded(padding), color);
+}
+
+Vec2 Brick::GetCenter() const
+{
+	return rect.GetCenter();
 }

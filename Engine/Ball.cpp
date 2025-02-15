@@ -66,3 +66,8 @@ void Ball::BounceY()
 {
 	Vel.y = -Vel.y;
 }
+
+Vec2 Ball::GetPos() const
+{
+	return Pos;
+}
