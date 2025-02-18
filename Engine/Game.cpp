@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	Ball(Vec2(417.0f, 300.0f), Vec2(80.0f, -70.0f)),
+	Ball(Vec2(417.0f, 300.0f), Vec2(160.0f, -140.0f)),
 	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight)),
 	BallSound(L"Sounds\\arkpad.wav"),
 	BrickSound(L"Sounds\\arkbrick.wav"),
@@ -90,6 +90,7 @@ void Game::UpdateModel()
 	if (collisionHapened) {
 		Bricks[curColIndex].ExecuteBallCollision(Ball);
 		BrickSound.Play();
+		Paddle.ResetCoolDown();
 	}
 
 
@@ -101,6 +102,7 @@ void Game::UpdateModel()
 	if (Ball.DoWallCollision(Walls))
 	{
 		BallSound.Play();
+		Paddle.ResetCoolDown();
 	}
 
 }

@@ -5,16 +5,18 @@
 #include "Ball.h"
 #include "Keyboard.h"
 #include "Graphics.h"
+#include <cmath>
 
 class Paddle {
 
 public:
 	Paddle(const Vec2& pos, float halfWidth, float halfHeight);
-	bool DoBallCollision(Ball& ball) const;
+	bool DoBallCollision(Ball& ball);
 	void DoWallCollision(const Rectf& wall);
 	void Update(const Keyboard& kbd,float deltaTime);
 	void Draw(Graphics& gfx);
 	Rectf GetRect() const;
+	void ResetCoolDown();
 
 private:
 	Vec2 Pos;
@@ -24,5 +26,5 @@ private:
 	float HalfHeight;
 	Color SideColor = Colors::Red;
 	Color InnerColor = Colors::White;
-
+	bool IsCoolDown = false;
 };

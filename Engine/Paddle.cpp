@@ -8,10 +8,27 @@ Paddle::Paddle(const Vec2& pos, float halfWidth, float halfHeight)
 {
 }
 
-bool Paddle::DoBallCollision(Ball& ball) const
+bool Paddle::DoBallCollision(Ball& ball)
 {
-	if (ball.GetVel().y > 0 && GetRect().IsOverlappingWith(ball.GetRect())) {
-		ball.BounceY();
+	// ball should collide with something else before colliding the paddle again:
+	if (IsCoolDown) return false;
+	
+	Rectf rect = GetRect();
+	if (rect.IsOverlappingWith(ball.GetRect())) {
+		const Vec2 ballPos = ball.GetPos();
+		if (std::signbit(ball.GetVel().x) == std::signbit((ballPos - Pos).x))
+		{
+			ball.BounceY();
+		}
+		else if (ballPos.x >= rect.Left && ballPos.x <= rect.Right)
+		{
+			ball.BounceY();
+		}
+		else
+		{
+			ball.BounceX();
+		}
+		IsCoolDown = true;
 		return true;
 	}
 	return false;
@@ -52,4 +69,9 @@ void Paddle::Draw(Graphics& gfx)
 Rectf Paddle::GetRect() const
 {
 	return Rectf::CenterRectf(Pos, HalfWidth, HalfHeight);
+}
+
+void Paddle::ResetCoolDown()
+{
+	IsCoolDown = false;
 }
