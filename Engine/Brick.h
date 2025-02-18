@@ -15,6 +15,8 @@ public:
 	void Draw(Graphics& gfx) const;
 	Vec2 GetCenter() const;
 	void RestoreBrick();
+	bool IsBrickDestroyed() const;
+
 private:
 	Color color;
 	Rectf rect;

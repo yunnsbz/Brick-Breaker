@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	Ball(Vec2(600.0f, 400.0f), Vec2(40.0f, -35.0f)),
+	Ball(Vec2(600.0f, 400.0f), Vec2(80.0f, -70.0f)),
 	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight)),
 	BallSound(L"Sounds\\arkpad.wav"),
 	BrickSound(L"Sounds\\arkbrick.wav"),
@@ -117,6 +117,22 @@ void Game::UpdateModel( float dt)
 			BallSound.Play();
 			Paddle.ResetCoolDown();
 		}
+
+		// check if all bricks are destroyed
+		int DestroyedBrickCount = 0;
+		for (Brick& B : Bricks)
+		{
+			if (!B.IsBrickDestroyed()) {
+				break;
+			}
+			else DestroyedBrickCount++;
+		}
+		if (DestroyedBrickCount == TotalBrickCount)
+		{
+			gameState = Win;
+		}
+
+
 	}
 	else if (gameState == GameOver) {
 		if (wnd.kbd.KeyIsPressed(VK_SPACE)) {

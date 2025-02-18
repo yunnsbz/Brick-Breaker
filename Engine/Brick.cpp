@@ -46,3 +46,8 @@ void Brick::RestoreBrick()
 {
 	IsDestroyed = false;
 }
+
+bool Brick::IsBrickDestroyed() const
+{
+	return IsDestroyed;
+}
