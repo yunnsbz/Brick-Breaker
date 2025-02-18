@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	Ball(Vec2(200.0f, 300.0f), Vec2(40.0f, -35.0f)),
+	Ball(Vec2(600.0f, 400.0f), Vec2(40.0f, -35.0f)),
 	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight)),
 	BallSound(L"Sounds\\arkpad.wav"),
 	BrickSound(L"Sounds\\arkbrick.wav"),
@@ -119,25 +119,40 @@ void Game::UpdateModel( float dt)
 		}
 	}
 	else if (gameState == GameOver) {
-
+		if (wnd.kbd.KeyIsPressed(VK_SPACE)) {
+			RestartGame();
+		}
 	}
 	else if (gameState == Win) {
+		if (wnd.kbd.KeyIsPressed(VK_SPACE)) {
+			RestartGame();
+		}
 	}
 }
 
 void Game::ComposeFrame()
 {
-	if (gameState = Playing) {
+	if (gameState == Playing) {
 		for (const Brick& B : Bricks) {
 			B.Draw(gfx);
 		}
 		Ball.Draw(gfx);
 		Paddle.Draw(gfx);
 	}
-	else if (gameState = GameOver) {
+	else if (gameState == GameOver) {
 
 	}
-	else if (gameState = Win) {
+	else if (gameState == Win) {
 
 	}
+}
+
+void Game::RestartGame()
+{
+	for (Brick& B : Bricks) {
+		B.RestoreBrick();
+	}
+	Ball.RestoreBall();
+
+	gameState = Playing;
 }

@@ -16,6 +16,8 @@ public:
 	void BounceX();
 	void BounceY();
 	Vec2 GetPos() const;
+	void RestoreBall();
+
 private:
 	static constexpr float Radius = 7.0f;
 	Vec2 Pos;

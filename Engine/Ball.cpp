@@ -79,3 +79,8 @@ Vec2 Ball::GetPos() const
 {
 	return Pos;
 }
+
+void Ball::RestoreBall()
+{
+	Pos = Vec2(200.0f, 300.0f);
+}

@@ -14,7 +14,7 @@ public:
 	void ExecuteBallCollision(Ball& ball);
 	void Draw(Graphics& gfx) const;
 	Vec2 GetCenter() const;
-
+	void RestoreBrick();
 private:
 	Color color;
 	Rectf rect;
