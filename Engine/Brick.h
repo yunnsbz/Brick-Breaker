@@ -3,6 +3,7 @@
 #include "Rectf.h"
 #include "Graphics.h"
 #include "Ball.h"
+#include <cmath>
 
 class Brick {
 public:

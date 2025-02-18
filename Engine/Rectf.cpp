@@ -40,6 +40,6 @@ Vec2 Rectf::GetCenter() const
 
 bool Rectf::IsOverlappingWith(const Rectf& other) const
 {
-	return Left < other.Right && Right > other.Left &&
-		Bottom > other.Top && Top < other.Bottom;
+	return Left <= other.Right && Right >= other.Left &&
+		Bottom >= other.Top && Top <= other.Bottom;
 }

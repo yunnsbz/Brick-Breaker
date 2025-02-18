@@ -15,11 +15,17 @@ bool Brick::CheckBallCollision(const Ball& ball) const
 void Brick::ExecuteBallCollision(Ball& ball)
 {
 	// get ball position to check if it is colliding with bottom-top or left-right
-	Vec2 ballPos = ball.GetPos();
-	if (ballPos.x >= rect.Left && ballPos.x <= rect.Right) {
+	const Vec2 ballPos = ball.GetPos();
+	if (std::signbit(ball.GetVel().x) == std::signbit((ballPos - GetCenter()).x))
+	{
 		ball.BounceY();
 	}
-	else {
+	else if (ballPos.x >= rect.Left && ballPos.x <= rect.Right)
+	{
+		ball.BounceY();
+	}
+	else
+	{
 		ball.BounceX();
 	}
 	IsDestroyed = true;
