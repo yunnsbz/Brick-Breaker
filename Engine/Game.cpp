@@ -52,14 +52,19 @@ Game::Game(MainWindow& wnd)
 void Game::Go()
 {
 	gfx.BeginFrame();	
-	UpdateModel();
+
+	float elapsedTime = ft.Mark();
+	while (elapsedTime > 0) {
+		float dt = std::min(elapsedTime, 0.0025f);
+		UpdateModel(elapsedTime);
+		elapsedTime -= dt;
+	}
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel( float dt)
 {
-	const float dt = ft.Mark();
 
 	Paddle.Update(wnd.kbd, dt);
 	Paddle.DoWallCollision(Walls);
