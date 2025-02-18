@@ -27,6 +27,9 @@ Vec2 Ball::GetVel() const
 	return Vel;
 }
 
+/// <summary>
+/// only returns true if the ball collides with the wall except the ground
+/// </summary>
 bool Ball::DoWallCollision(const Rectf& wall)
 {
 	bool collided = false;
@@ -48,13 +51,18 @@ bool Ball::DoWallCollision(const Rectf& wall)
 		BounceY();
 		collided = true;
 	}
-	if (wall.Bottom < rect.Bottom) {
-		Pos.y -= rect.Bottom - wall.Bottom;
-		BounceY();
-		collided = true;
-	}
 
 	return collided;
+}
+
+bool Ball::DoGroundCollision(const Rectf& wall)
+{
+	Rectf rect = GetRect();
+	if (wall.Bottom < rect.Bottom) {
+		Pos.y -= rect.Bottom - wall.Bottom;
+		return true;
+	}
+	else return false;
 }
 
 void Ball::BounceX()

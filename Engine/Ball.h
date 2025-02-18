@@ -12,6 +12,7 @@ public:
 	Rectf GetRect() const;
 	Vec2 GetVel() const;
 	bool DoWallCollision(const Rectf& wall);
+	bool DoGroundCollision(const Rectf& wall);
 	void BounceX();
 	void BounceY();
 	Vec2 GetPos() const;

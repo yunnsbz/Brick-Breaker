@@ -41,6 +41,7 @@ private:
 	/********************************/
 	/*  User Functions              */
 	/********************************/
+
 private:
 	MainWindow& wnd;
 	Graphics gfx;
@@ -63,5 +64,11 @@ private:
 
 	Paddle Paddle;
 
+	enum gameStates {
+		Playing,
+		GameOver,
+		Win
+	};
 
+	gameStates gameState = Playing;
 };
