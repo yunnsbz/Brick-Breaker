@@ -24,6 +24,6 @@ private:
 	static constexpr float padding = -2.0f;
 	int BreakPoint;
 	int BreakPointMax;
-	static constexpr Color BrickColors[4] = { Colors::White, Colors::Blue ,Colors::Green, Colors::Red };
+	static constexpr Color BrickColors[4] = { Colors::White, Colors::Green, Colors::Blue, Colors::Red };
 
 };
