@@ -1,8 +1,7 @@
 #include "Ball.h"
 
-Ball::Ball(const Vec2& pos, const Vec2 vel)
+Ball::Ball(const Vec2& pos)
 	: 
-	Vel(vel), 
 	Pos(pos)
 {
 }
@@ -68,11 +67,24 @@ bool Ball::DoGroundCollision(const Rectf& wall)
 void Ball::BounceX()
 {
 	Vel.x = -Vel.x;
+	VelConst.x = -VelConst.x;
 }
 
 void Ball::BounceY()
 {
 	Vel.y = -Vel.y;
+	VelConst.y = -VelConst.y;
+}
+
+void Ball::ChangeAngle(float dx)
+{
+	Vel.x = VelConst.x + dx;
+
+	int sign = std::signbit(Vel.y) ? -1 : 1;
+
+	float VelSquared = VelConst.GetLengthSq();
+	Vel.y = sqrtf(abs(VelSquared - Vel.x * Vel.x));
+	Vel.y *= sign;
 }
 
 Vec2 Ball::GetPos() const
@@ -83,4 +95,5 @@ Vec2 Ball::GetPos() const
 void Ball::RestoreBall()
 {
 	Pos = Vec2(200.0f, 300.0f);
+	Vel = VelConst;
 }

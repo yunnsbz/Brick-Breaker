@@ -16,13 +16,16 @@ bool Paddle::DoBallCollision(Ball& ball)
 	Rectf rect = GetRect();
 	if (rect.IsOverlappingWith(ball.GetRect())) {
 		const Vec2 ballPos = ball.GetPos();
+		float bounceAdditionX = (ball.GetPos().x - Pos.x) / 2;
 		if (std::signbit(ball.GetVel().x) == std::signbit((ballPos - Pos).x))
 		{
 			ball.BounceY();
+			ball.ChangeAngle(bounceAdditionX);
 		}
 		else if (ballPos.x >= rect.Left && ballPos.x <= rect.Right)
 		{
 			ball.BounceY();
+			ball.ChangeAngle(bounceAdditionX);
 		}
 		else
 		{
@@ -33,7 +36,6 @@ bool Paddle::DoBallCollision(Ball& ball)
 	}
 	return false;
 }
-
 void Paddle::DoWallCollision(const Rectf& walls)
 {
 	const Rectf rect = GetRect();

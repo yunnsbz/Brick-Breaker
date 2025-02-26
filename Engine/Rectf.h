@@ -19,6 +19,4 @@ public:
 	float Top;
 	float Bottom;
 
-
-
 };

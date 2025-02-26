@@ -56,6 +56,7 @@ void Brick::RestoreBrick()
 {
 	IsDestroyed = false;
 	BreakPoint = BreakPointMax;
+	IsCoolDown = false;
 }
 
 bool Brick::IsBrickDestroyed() const

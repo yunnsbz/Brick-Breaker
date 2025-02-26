@@ -25,14 +25,14 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	Ball(Vec2(600.0f, 400.0f), Vec2(80.0f, -70.0f)),
+	Ball(Vec2(600.0f, 400.0f)),
 	Walls(Rectf(Vec2(0, 0), gfx.ScreenWidth, gfx.ScreenHeight)),
 	BallSound(L"Sounds\\arkpad.wav"),
 	BrickSound(L"Sounds\\arkbrick.wav"),
 	Paddle(Vec2(150,500),50,10)
 {
 	
-	const Vec2 TopLeft(100, 50);
+	const Vec2 TopLeft(160, 50);
 	const float Width = 50;
 	const float Height = 20;
 
