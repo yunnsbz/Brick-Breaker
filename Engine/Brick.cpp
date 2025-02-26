@@ -1,10 +1,12 @@
 #include "Brick.h"
 
-Brick::Brick(const Rectf& rect, const Color& c) :
+Brick::Brick(const Rectf& rect, int BreakPoint) :
 	rect(rect),
-	color(c)
+	BreakPointMax(BreakPoint),
+	BreakPoint(BreakPoint)
+	
 {
-
+	
 }
 
 bool Brick::CheckBallCollision(const Ball& ball) const
@@ -28,13 +30,15 @@ void Brick::ExecuteBallCollision(Ball& ball)
 	{
 		ball.BounceX();
 	}
-	IsDestroyed = true;
+	--BreakPoint;
+	if (BreakPoint <= 0)
+		IsDestroyed = true;
 }
 
 void Brick::Draw(Graphics& gfx) const
 {
 	if(!IsDestroyed)
-		gfx.DrawRect(rect.GetExpanded(padding), color);
+		gfx.DrawRect(rect.GetExpanded(padding), BrickColors[BreakPoint-1]);
 }
 
 Vec2 Brick::GetCenter() const
@@ -45,6 +49,7 @@ Vec2 Brick::GetCenter() const
 void Brick::RestoreBrick()
 {
 	IsDestroyed = false;
+	BreakPoint = BreakPointMax;
 }
 
 bool Brick::IsBrickDestroyed() const

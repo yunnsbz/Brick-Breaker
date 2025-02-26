@@ -31,7 +31,7 @@ Game::Game(MainWindow& wnd)
 	BrickSound(L"Sounds\\arkbrick.wav"),
 	Paddle(Vec2(150,500),50,20)
 {
-	const Color BrickColors[BrickCountY] = { Colors::White, Colors::Blue ,Colors::Green, Colors::Red };
+	
 	const Vec2 TopLeft(100, 50);
 	const float Width = 50;
 	const float Height = 20;
@@ -39,11 +39,11 @@ Game::Game(MainWindow& wnd)
 	int i = 0;
 	for (int y = 0; y < BrickCountY; y++)
 	{
-		const Color c = BrickColors[y];
+		int breakPoint = y + 1;
 		for (int x = 0; x < BrickCountX; x++)
 		{
 			Rectf brickRect = Rectf(TopLeft + Vec2(Width * x, Height * y), Width, Height);
-			Bricks[i] = Brick(brickRect, c);
+			Bricks[i] = Brick(brickRect, breakPoint);
 			i++;
 		}
 	}
@@ -169,6 +169,8 @@ void Game::RestartGame()
 		B.RestoreBrick();
 	}
 	Ball.RestoreBall();
+
+	Paddle.ResetCoolDown();
 
 	gameState = Playing;
 }
