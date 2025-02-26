@@ -11,7 +11,11 @@ Brick::Brick(const Rectf& rect, int BreakPoint) :
 
 bool Brick::CheckBallCollision(const Ball& ball) const
 {
-	return !IsDestroyed && rect.IsOverlappingWith(ball.GetRect());
+	// ball should collide with something else before colliding the brick again:
+	if (IsCoolDown) return false;
+
+	// check if the ball is colliding with the brick
+	else return !IsDestroyed && rect.IsOverlappingWith(ball.GetRect());
 }
 
 void Brick::ExecuteBallCollision(Ball& ball)
@@ -33,6 +37,8 @@ void Brick::ExecuteBallCollision(Ball& ball)
 	--BreakPoint;
 	if (BreakPoint <= 0)
 		IsDestroyed = true;
+
+	IsCoolDown = true;
 }
 
 void Brick::Draw(Graphics& gfx) const
@@ -55,4 +61,9 @@ void Brick::RestoreBrick()
 bool Brick::IsBrickDestroyed() const
 {
 	return IsDestroyed;
+}
+
+void Brick::ResetCoolDown()
+{
+	IsCoolDown = false;
 }

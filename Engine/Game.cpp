@@ -94,6 +94,13 @@ void Game::UpdateModel( float dt)
 			}
 		}
 		if (collisionHapened) {
+
+			// cooldown reset before executing collision
+			for (Brick& B : Bricks){
+				B.ResetCoolDown();
+			}
+
+			// collision execution will activate cooldown
 			Bricks[curColIndex].ExecuteBallCollision(Ball);
 			BrickSound.Play();
 			Paddle.ResetCoolDown();
@@ -103,6 +110,9 @@ void Game::UpdateModel( float dt)
 		if (Paddle.DoBallCollision(Ball))
 		{
 			BallSound.Play();
+			for (Brick& B : Bricks) {
+				B.ResetCoolDown();
+			}
 		}
 
 		// game over if ball touches the ground
@@ -116,6 +126,9 @@ void Game::UpdateModel( float dt)
 		{
 			BallSound.Play();
 			Paddle.ResetCoolDown();
+			for (Brick& B : Bricks) {
+				B.ResetCoolDown();
+			}
 		}
 
 		// check if all bricks are destroyed

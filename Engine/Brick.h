@@ -16,7 +16,7 @@ public:
 	Vec2 GetCenter() const;
 	void RestoreBrick();
 	bool IsBrickDestroyed() const;
-
+	void ResetCoolDown();
 private:
 	Color color;
 	Rectf rect;
@@ -25,5 +25,5 @@ private:
 	int BreakPoint;
 	int BreakPointMax;
 	static constexpr Color BrickColors[4] = { Colors::White, Colors::Green, Colors::Blue, Colors::Red };
-
+	bool IsCoolDown = false;
 };
