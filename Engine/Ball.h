@@ -22,6 +22,7 @@ public:
 
 private:
 	static constexpr float Radius = 7.0f;
+	static constexpr float MaxAngleChange = 50.0f;
 	Vec2 Pos;
 
 	// can change angle of the ball

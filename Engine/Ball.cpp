@@ -78,6 +78,9 @@ void Ball::BounceY()
 
 void Ball::ChangeAngle(float dx)
 {
+	if (dx > MaxAngleChange) dx = MaxAngleChange;
+	else if (dx < -MaxAngleChange) dx = -MaxAngleChange;
+
 	Vel.x = VelConst.x + dx;
 
 	int sign = std::signbit(Vel.y) ? -1 : 1;
